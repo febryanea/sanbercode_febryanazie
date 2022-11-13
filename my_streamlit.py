@@ -24,9 +24,9 @@ elif option == 'Dataframe':
 
     st.write("""## Data Clean""") #menampilkan judul halaman dataframe
     def preprocess(row):
-    text = row['title']
-    text = p.clean(text)
-    return text
+        text = row['title']
+        text = p.clean(text)
+        return text
 
     #menjalankan function preprocess
     df['clean_title'] = df.apply(preprocess, axis=1)
@@ -36,8 +36,14 @@ elif option == 'Dataframe':
     df['clean_title'] = df['clean_title'].str.replace('\n', '')
     df['clean_title'] = df['clean_title'].str.replace('\t', '')
     df['clean_title'] = df['clean_title'].str.replace(r'\b(\w{1,3})\b', '')
+    indonesia = stopwords.words('indonesian')
+    indonesia = r'\b(?:{})\b'.format('|'.join(indonesia))
+    df['clean_title'] = df['clean_title'].str.replace(indonesia, '')
+    factory = StemmerFactory()
+    stemmer = factory.create_stemmer()
+    df['clean_title'] = df['clean_title'].apply(lambda x: stemmer.stem(x))
     df
-    
+
 elif option == 'Chart':
     st.write("""## Draw Charts""") #menampilkan judul halaman 
 
