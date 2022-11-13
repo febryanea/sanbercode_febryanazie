@@ -1,21 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import json, requests, re
-import tweepy
-import string
-import requests 
-from bs4 import BeautifulSoup 
-from urllib.request import urlopen
-import preprocessor as p
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-from nltk.corpus import stopwords
-from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-from nltk.tokenize import word_tokenize
-from nltk.probability import FreqDist
+
 
 
 option = st.sidebar.selectbox(
