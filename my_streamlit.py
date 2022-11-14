@@ -16,11 +16,11 @@ elif option == 'Dataframe':
     df #menampilkan dataframe
 
     st.write("""## Data Clean""") #menampilkan judul halaman dataframe
-    df2 = pd.read_csv('df_clean.csv')
+    df2 = pd.read_csv('dfclean.csv')
     df2 #menampilkan dataframe
 
     st.write("""## Data Sentimen""") #menampilkan judul halaman dataframe
-    df3 = pd.read_csv('df_final.csv')
+    df3 = pd.read_csv('dffinal.csv')
     df3 #menampilkan dataframe
 elif option == 'Chart':
     st.write("""## Draw Charts""") #menampilkan judul halaman 
