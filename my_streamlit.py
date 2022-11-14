@@ -1,14 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import preprocessor as p
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-from nltk.corpus import stopwords
-from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-from nltk.tokenize import word_tokenize
-from nltk.probability import FreqDist
+
 
 option = st.sidebar.selectbox(
     'Silakan pilih:',
@@ -23,27 +16,12 @@ elif option == 'Dataframe':
     df #menampilkan dataframe
 
     st.write("""## Data Clean""") #menampilkan judul halaman dataframe
-    def preprocess(row):
-        text = row['title']
-        text = p.clean(text)
-        return text
+    df2 = pd.read_csv('df_clean.csv')
+    df2 #menampilkan dataframe
 
-    #menjalankan function preprocess
-    df['clean_title'] = df.apply(preprocess, axis=1)
-    df['clean_title'] = df['clean_title'].str.lower()
-    df['clean_title'] = df['clean_title'].str.replace('\d+', '')
-    df['clean_title'] = df['clean_title'].str.translate(str.maketrans("","",string.punctuation))
-    df['clean_title'] = df['clean_title'].str.replace('\n', '')
-    df['clean_title'] = df['clean_title'].str.replace('\t', '')
-    df['clean_title'] = df['clean_title'].str.replace(r'\b(\w{1,3})\b', '')
-    indonesia = stopwords.words('indonesian')
-    indonesia = r'\b(?:{})\b'.format('|'.join(indonesia))
-    df['clean_title'] = df['clean_title'].str.replace(indonesia, '')
-    factory = StemmerFactory()
-    stemmer = factory.create_stemmer()
-    df['clean_title'] = df['clean_title'].apply(lambda x: stemmer.stem(x))
-    df
-
+    st.write("""## Data Sentimen""") #menampilkan judul halaman dataframe
+    df3 = pd.read_csv('df_final.csv')
+    df3 #menampilkan dataframe
 elif option == 'Chart':
     st.write("""## Draw Charts""") #menampilkan judul halaman 
 
